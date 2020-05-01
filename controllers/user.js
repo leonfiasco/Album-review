@@ -19,7 +19,7 @@ exports.user_signup =  async (req, res) => {
     if (password !== passwordconfirm)
       return res
         .status(400)
-        .json({ msg: "Enter the same password twice for verification." });
+        .json({ msg: "Passwords do not match" });
 
     const existingUser = await User.findOne({ email: email });
 
@@ -52,23 +52,34 @@ exports.user_signup =  async (req, res) => {
   }
 }
 
- exports.user_login = (req, res, next) => {
+ exports.user_login = async (req, res) => {
   try {
-    let { email, password } = req.body;
-    
+    const { email, password } = req.body;
+
+    // validate
     if (!email || !password)
-      res.status(400).json({ message: "Not all fields have been entered." });
-    
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+
     const user = await User.findOne({ email: email });
-      if (!user)
-        res.status(400).json({ message: 'No account with this email exists' });
+    if (!user)
+      return res
+        .status(400)
+        .json({ msg: "No account with this email has been registered." });
 
-    const isMatch = await bcrypt.compare(password, user.password)
-      if (!isMatch)
-        res.status(400).json({ message: 'invalid password *change this ASAP*' })
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-  } catch(err) {
-
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        displayName: user.displayName,
+        email
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 }
 
