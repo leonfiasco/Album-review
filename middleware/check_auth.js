@@ -2,15 +2,18 @@ const jwt = require('jsonwebtoken');
 
 module.exports = ((req, res, next) => {
     try {
-        const token = req.headers.authorization.split(' ')[1];
+        const token = req.headers.authorization;
+        if (!token)
+            return res.status(401).json({ message: 'No authentication token, access denied.' });
         // this authenticates the user to access certain paths 
-        const decoded = jwt.verify(token, process.env.JWT_KEY);
-        //adding a new field within req
-        req.userData = decoded;
-        next()
-    } catch(error) {
-        res.status(401).json({
-            message: 'Auth failed'
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        if (!verified)
+            return res.status(401).json({ message: 'Token authentication failed, access denied.' });    
+        req.user = verified.id
+        next();
+    } catch(err) {
+        res.status(500).json({
+            error: err.message
         })
     }
 })

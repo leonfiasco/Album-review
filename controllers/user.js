@@ -83,18 +83,34 @@ exports.user_signup =  async (req, res) => {
   }
 }
 
-//exports.user_delete = (req, res, next) => {
-    // User.remove({ _id: req.params.userId })
-    //   .exec()
-    //   .then(result => {
-    //     res.status(200).json({
-    //       message: 'User deleted'
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     res.status(500).json({
-    //       error: err
-    //     });    
-    //   });
-  //}
+exports.user_delete = async (req, res, next) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.user)
+    res.json(deletedUser)
+  } catch (err) {
+      res.status(500).json({ error: err.message })
+  }
+  
+  }
+
+  exports.user_isLoggedIn = async (req, res, next) => {
+    try {
+      const token = req.headers.authorization;
+      if (!token)
+        res.json(false);
+
+      const verified = jwt.verify(token, process.env.JWT_SECRET); 
+      if (!verified)
+        res.json(false);
+
+      const user = await User.findById(verified.id)
+        if (!user) {
+          res.json(false);
+        } else {
+          res.json(true);
+        }
+            
+    } catch (err) {
+
+    }
+  }
