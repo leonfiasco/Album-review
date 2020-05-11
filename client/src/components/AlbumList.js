@@ -18,6 +18,7 @@ function Albums() {
                             <Album key={i} title={album.title} artist={album.artist}/>
                         )
                     })}
+                    
                     </div>
                 </div>
             </div>
