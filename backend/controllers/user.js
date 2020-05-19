@@ -6,17 +6,17 @@ const User = require('../models/user');
 
 exports.user_signup =  async (req, res) => {
   try {
-    let { email, password, passwordconfirm, displayName } = req.body;
+    let { email, password, passwordConfirm, displayName } = req.body;
 
     // validate
 
-    if (!email || !password || !passwordconfirm)
+    if (!email || !password || !passwordConfirm)
       return res.status(400).json({ msg: "Not all fields have been entered." });
     if (password.length < 5)
       return res
         .status(400)
         .json({ msg: "The password needs to be at least 5 characters long." });
-    if (password !== passwordconfirm)
+    if (password !== passwordConfirm)
       return res
         .status(400)
         .json({ msg: "Passwords do not match" });
@@ -39,11 +39,11 @@ exports.user_signup =  async (req, res) => {
       _id: new mongoose.Types.ObjectId(),
       email: email,
       password: passwordHash,
-      passwordconfirm,
+      passwordConfirm,
       displayName
     });
 
-    const savedUser = await await user.save();
+    const savedUser = await user.save();
     res.json(savedUser)
 
 
@@ -113,4 +113,9 @@ exports.user_delete = async (req, res, next) => {
     } catch (err) {
 
     }
+  }
+
+  exports.get_user = async (req, res, next) => {
+    const user = await User.findById(req.user);
+    res.status(200).json(user)
   }
