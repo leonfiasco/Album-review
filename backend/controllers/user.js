@@ -6,50 +6,45 @@ const User = require('../models/user');
 
 exports.user_signup =  async (req, res) => {
   try {
-    let { email, password, passwordConfirm, displayName } = req.body;
+    let { email, password, passwordCheck, displayName } = req.body;
 
     // validate
 
-    if (!email || !password || !passwordConfirm)
+    if (!email || !password || !passwordCheck)
       return res.status(400).json({ msg: "Not all fields have been entered." });
     if (password.length < 5)
       return res
         .status(400)
         .json({ msg: "The password needs to be at least 5 characters long." });
-    if (password !== passwordConfirm)
+    if (password !== passwordCheck)
       return res
         .status(400)
-        .json({ msg: "Passwords do not match" });
+        .json({ msg: "Enter the same password twice for verification." });
 
     const existingUser = await User.findOne({ email: email });
-
     if (existingUser)
       return res
         .status(400)
         .json({ msg: "An account with this email already exists." });
 
-     if (!displayName) {
-      displayName = email;
-     } 
+    if (!displayName) displayName = email;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
-    
-    const user = new User({
+
+    const newUser = new User({
       _id: new mongoose.Types.ObjectId(),
-      email: email,
+      email,
       password: passwordHash,
-      passwordConfirm,
-      displayName
+      passwordCheck: passwordHash,
+      displayName,
     });
-
-    const savedUser = await user.save();
-    res.json(savedUser)
-
-
+    const savedUser = await newUser.save();
+    res.json(savedUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+
 }
 
  exports.user_login = async (req, res) => {
@@ -75,7 +70,6 @@ exports.user_signup =  async (req, res) => {
       user: {
         id: user._id,
         displayName: user.displayName,
-        email
       },
     });
   } catch (err) {
@@ -85,37 +79,34 @@ exports.user_signup =  async (req, res) => {
 
 exports.user_delete = async (req, res, next) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.user)
-    res.json(deletedUser)
+    const deletedUser = await User.findByIdAndDelete(req.user);
+    res.json(deletedUser);
   } catch (err) {
-      res.status(500).json({ error: err.message })
+    res.status(500).json({ error: err.message });
   }
-  
   }
 
   exports.user_isLoggedIn = async (req, res, next) => {
     try {
-      const token = req.headers.authorization;
-      if (!token)
-        res.json(false);
-
-      const verified = jwt.verify(token, process.env.JWT_SECRET); 
-      if (!verified)
-        res.json(false);
-
-      const user = await User.findById(verified.id)
-        if (!user) {
-          res.json(false);
-        } else {
-          res.json(true);
-        }
-            
+      const token = req.header("x-auth-token");
+      if (!token) return res.json(false);
+  
+      const verified = jwt.verify(token, process.env.JWT_SECRET);
+      if (!verified) return res.json(false);
+  
+      const user = await User.findById(verified.id);
+      if (!user) return res.json(false);
+  
+      return res.json(true);
     } catch (err) {
-
+      res.status(500).json({ error: err.message });
     }
   }
 
-  exports.get_user = async (req, res, next) => {
+  exports.get_user = async (req, res) => {
     const user = await User.findById(req.user);
-    res.status(200).json(user)
+    res.json({
+      displayName: user.displayName,
+      id: user._id,
+    });
   }

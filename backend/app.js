@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+
 const albumRoutes = require('./routes/albums');
 const userRoutes = require('./routes/user');
 
@@ -31,9 +32,6 @@ app.use((req, res, next) => {
         }
     })
 })
-
-
-
 
 
 
