@@ -5,7 +5,9 @@ import Header from "./components/layout/Header";
 import Home from "./components/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import AlbumList from "./components/AlbumList"
 import UserContext from "./context/UserContext";
+import AddAlbum from "./components/AddAlbum";
 
 import "./App.css";
 
@@ -39,7 +41,6 @@ export default function App() {
             user: userRes.data,
           });
        }
-       console.log(tokenRes.data);
     };
 
     checkLoggedIn();
@@ -56,6 +57,8 @@ export default function App() {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              <Route path="/albums" component={AlbumList} />
+              <Route path="/add-album" component={AddAlbum} />
             </Switch>
           </div>
         </UserContext.Provider>
