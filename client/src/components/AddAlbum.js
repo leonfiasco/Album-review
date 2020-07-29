@@ -19,12 +19,13 @@ function AddAlbum() {
 
     const submit = async (e) => {
         e.preventDefault();
-
-            const newAlbum = { title, artist, genre, year };
-            await Axios.post("/albums/add-album", newAlbum)
-            .then(res => console.log(res))
-            
-            history.push("/albums")
+      
+         if (userData.user) {
+           const newAlbum = { title, artist, genre, year };
+           await Axios.post("/albums/add-album", newAlbum)
+           console.log(newAlbum);
+         } 
+ 
     }
 
     return (
