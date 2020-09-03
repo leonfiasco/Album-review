@@ -13,18 +13,17 @@ function AddAlbum() {
 
     const userData = useContext(UserContext);
 
-    
-
     const history = useHistory();
 
     const submit = async (e) => {
         e.preventDefault();
       
-         if (userData.user) {
            const newAlbum = { title, artist, genre, year };
            await Axios.post("/albums/add-album", newAlbum)
-           console.log(newAlbum);
-         } 
+           history.push("/albums")
+            // the page allows to input the album when i remove the checkauth from the routes
+            // i need to find a way for certain page to only be shown if there's a login user 
+            // I need to give this page some credentials to be able to post a new album
  
     }
 

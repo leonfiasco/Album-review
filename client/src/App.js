@@ -43,12 +43,13 @@ export default function App() {
        }
     };
 
+    console.log(userData)
     checkLoggedIn();
   }, []);
 
   return (  
+   
     <>
-    
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Header />
