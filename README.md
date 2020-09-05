@@ -34,5 +34,17 @@ they can also add their own album when they press the add buttons tab on the nav
 
 
 ## Process
-To initialise my app I imported express which allows my app to make http requests such as GET and POST
+- To initialise my app I imported express which allows my app to make http requests such as GET and POST, which will allow me to get a list of albums, add a new album and update and delte an abum.
+
+- Once express has been added I can create routes for user and albums respectively, each will have GET method thats will get the list of albums/users, POST that will add a new album/register a new user/login a user and also to check if a user is logged in, PATCH allows me to update an album, and DELETE will allow me to delete an album.
+
+- To make sure these routes are working I use postman, which is an applcation, instaleed locally on my computer that will test each http request and return to me the requested endpoint or an error.
+
+- The data we get back from the request is in json format, and is not easily readable, so to make it understandable we have to install a middleware-package called body-parser which will parse the body from the incoming request we get from postman and allow me to use req.body
+
+- Next I created a database which will store the lists of albums and users respectively, the database I chose to use is Mongodb, to connect it within my code I use a package called mongoose
+
+- Now that mongoose has been added I can create a userSchema and a albumSchema which connects to a Mongodb collection, which will show how I want entries in the document to look and these will be stored in the a folder called models.
+
+- The models have been created and and now we can create controllers and this where the routes functions are defined. The first function is the user_signup, which is a POST request. I have used the async/await keywords, which are a pair functions that when the async keyword is declared the possibility of await is expected. This make the code run asynchronously.   
 
