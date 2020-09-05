@@ -46,5 +46,11 @@ they can also add their own album when they press the add buttons tab on the nav
 
 - Now that mongoose has been added I can create a userSchema and a albumSchema which connects to a Mongodb collection, which will show how I want entries in the document to look and these will be stored in the a folder called models.
 
-- The models have been created and and now we can create controllers and this where the routes functions are defined. The first function is the user_signup, which is a POST request. I have used the async/await keywords, which are a pair functions that when the async keyword is declared the possibility of await is expected. This make the code run asynchronously.   
+- The models have been created and and now we can create controllers and this where the routes functions are defined. The first function is the user_signup, which is a POST request. I have used the async/await keywords, which are a pair function keywords that when the async keyword is declared the possibility of await is expected. This make the code run asynchronously.  
+
+- Within the async/await block I will use a try/catch block, which when code is inserted into the try block it will run the block of code and if it catches any errors the catch block will execute a response status of 500.
+
+- As I'm working with http requests, I need a way of getting a visual representation of what the intended requests I'm making is and what status I get back to make sure its been successful, to do this I install a middleware package called morgan, which will log the requests and the status onto my terminal.
+
+- In the controller user_signup, once a new user has been created to ensure that their account credentials are secure especially their password 
 
