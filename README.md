@@ -28,12 +28,15 @@ they can also add their own album when they press the add buttons tab on the nav
 
 
 #### Front-end
-- react 
+- react
+- react-router-dom
 - react context provider
 - axios
 
 
 ## Process
+-For this project I used node, which is server-site platform that allows Javascript users to run server-side code on the web, and with the constantly updating code we need something will track this and prevent us from stopping/restarting the server to see this affect I installed a package called nodemon
+
 - To initialise my app I imported express which allows my app to make http requests such as GET and POST, which will allow me to get a list of albums, add a new album and update and delte an abum.
 
 - Once express has been added I can create routes for user and albums respectively, each will have GET method thats will get the list of albums/users, POST that will add a new album/register a new user/login a user and also to check if a user is logged in, PATCH allows me to update an album, and DELETE will allow me to delete an album.
@@ -52,5 +55,11 @@ they can also add their own album when they press the add buttons tab on the nav
 
 - As I'm working with http requests, I need a way of getting a visual representation of what the intended requests I'm making is and what status I get back to make sure its been successful, to do this I install a middleware package called morgan, which will log the requests and the status onto my terminal.
 
-- In the controller user_signup, once a new user has been created to ensure that their account credentials are secure especially their password 
+- In the controller user_signup, once a new user has been created to ensure that their account credentials are secure especially their password, I will install a package called bcrypt that will make the password undecypherable (hash), it does this by generating salt that does the decyphering, and i pass that to a hash function that comes with bcrypt, and pass that to the new user object model.
+
+- Each new user will given a unique id, this is given to us by mongoose through the objectId function.
+
+- Another package that was used in the user_login and user_isLoggedIn is that jsonwebtoken which will assign is session token, which is some randomised text, that are assigned to a user objectId and give that user ability to log in and stay logged aslong as they have been given a session token.
+
+- Once the user routes have been created, I made a custom middleware which will check the authentication of a user and will either enable or deny them access to certain pages depending on if they have session token in the request header. and i'll pass this check_auth middleware onto the routes that need authentication to access their pages. 
 
