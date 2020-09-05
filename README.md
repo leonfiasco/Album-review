@@ -72,14 +72,18 @@ they can also add their own album when they press the add buttons tab on the nav
 - Now that the back-end side of things is finished for now, I can start to work on the front-end. I'll be using React.js, which is a Javascript library, which is a view layer of a
 MVC application (Model View Controller). To initialise React i will use yarn create react-app, which will installed a pre-configurated app.
 
-- I remove unnecessary imports from app.js and index.js such as the logo.svg and the jsx within app.js so just left with a blank page on the screen.
-
-- I start create a basic layout for the app, I start by making navbar that will contain the the tab for sign-up/login/ and once the user has been authenticated and logged in the navbar will give them the option to view album and to add album.
-
 
 #### Front-end
+
+- I remove unnecessary imports from App.js and index.js such as the logo.svg and the jsx within app.js so just left with a blank page on the screen.
+
+- I start create a basic layout for the app, I start by making navbar that will contain a tab for register/login/ and once the user has been authenticated and logged in the navbar will give them the option to view album and to add album. I will also create components for register, login, add-album, view-album, and logout
+
 - Next I create a data store for the data about the user, I use React context api, which provides a way to make particular data available to all components throughout the component tree no matter how deeply nested that component may be. To do this I create a file called UserContext and in the file I imoprt createContext from React as React give us access to this and finally I export it.
 
+- now the context has been created, in the App.js I'm going to install a package called React-router-dom that allows me route between different pages, React-router gives me access to { BrowserRouter, Switch, Route } firstly ill nest all my components within the BrowserRouter, Switch will then wrap around the components, and finally ill change all the components from their for jsx tag to Route.
+
+- Now with React to avoid having to pass down data through different components, they came up with React-hooks, you import from useState() and give you access to the current state value and a function that lets you update it.
 
 
 
