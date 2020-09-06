@@ -83,8 +83,23 @@ MVC application (Model View Controller). To initialise React i will use yarn cre
 
 - now the context has been created, in the App.js I'm going to install a package called React-router-dom that allows me route between different pages, React-router gives me access to { BrowserRouter, Switch, Route } firstly ill nest all my components within the BrowserRouter, Switch will then wrap around the components, and finally ill change all the components from their for jsx tag to Route.
 
-- Now with React to avoid having to pass down data through different components, they came up with React-hooks, you import from useState() and give you access to the current state value and a function that lets you update it.
+- Now with React to avoid having to pass down data through different components, they came up with React-hooks, you import from useState() and give you access to the current state value that contains that data you will use and a function that lets you set the data. within the setState() function i will declare an object withn it with the value user, token and set them to undefined.
 
+- Now that the user state has been set, I need to create the authorization options for the page and also I need to create action for the buttons within the navbar, to that I imported useHistory from React-router, which is also a react hook, that allows the page redirection.
+
+- I'm going to start create the functionality for the register page, first im going to set the state for the email, password, passwordCheck, displayName so their value can be recorded when someone types in the input fields, secondly i'll import usercontext so I have the user data available.
+
+- To be able to retrieve data from the back-end to front-end im going to use a package called Axios which is a promise based HTTP client for the browser and Node.js. Axios makes it easy to send asynchronous HTTP requests to REST endpoints.
+
+- I declare a function called submit once a user signs-up they're immediately logged in
+
+- Within an object set as newUser im going to put the state of email, password, passwordCheck, and displayName. Once this is done I can make a post request using Axios the first parameter is the url we want to access, and the second parameter will be whatever we in the request body in the is case it will be the newuser.
+
+- To get the user to be logged in once they register, I set the userData to get the token and once the data has been recieved, I will pass it to the localstorage.setIem which you give it a keyname and specify the value, localStorage.setItem("auth-token", loginRes.data.token).
+
+- similarly the same is done with the login page
+
+- Back to App.js once we have access to the userdata we can use React-context as a jsx tag and nest it directly under the BrowserRouter and passed it the value userData and setUserData, this allows all the children components to have access to the userdata
 
 
 
