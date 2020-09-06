@@ -1,7 +1,8 @@
 # Album-review
 
 The premise of this app is that users can sign up and once signed in they view a list of albums that other users have uploaded. They can also add their own album when they press the add buttons tab on the navbar. This will take them to a screen where they enter a form of their preferred choice of album.
-Future features
+
+### Future features
 
 •	I'm eventually going to add an upload link so the user can upload an image of their chosen album.
 
@@ -11,22 +12,22 @@ Future features
 
 # Tech stack
 #### Back-end
-•	Node
-•	Nodemon
-•	Morgan
-•	Mongoose
-•	Mongodb
-•	Bcrypt
-•	Body-parser
-•	Express
-•	http-proxy-middleware
-•	jsonwebtokens
+-	Node
+-	Nodemon
+-	Morgan
+-	Mongoose
+-	Mongodb
+-	Bcrypt
+-	Body-parser
+-	Express
+-	http-proxy-middleware
+-	jsonwebtokens
 
 #### Front-end
-•	React
-•	React-router-dom
-•	React context api
-•	Axios
+-	React
+-	React-router-dom
+-	React context api
+-	Axios
 
 ## Process
 
