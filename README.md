@@ -2,6 +2,10 @@
 
 The premise of this app is that users can sign up and once signed in they view a list of albums that other users have uploaded. They can also add their own album when they press the add buttons tab on the navbar. This will take them to a screen where they enter a form of their preferred choice of album.
 
+NOTE!!!
+
+Password needs to be six characters long when registering. Im yet to create a flash message on the client to notify the user
+
 ### Future features
 
 •	I'm eventually going to add an upload link so the user can upload an image of their chosen album.
