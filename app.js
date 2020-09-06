@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const albumRoutes = require('./routes/albums');
 const userRoutes = require('./routes/user');
 
-mongoose.connect(`mongodb+srv://LeonBoakye:${process.env.PASSWORD}@cluster0-l6zcb.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI,`mongodb+srv://LeonBoakye:${process.env.PASSWORD}@cluster0-l6zcb.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -33,7 +33,9 @@ app.use((req, res, next) => {
     })
 })
 
-
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static('client/build'));
+}
 
 
 const port = process.env.PORT || 2402;
