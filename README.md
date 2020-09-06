@@ -36,7 +36,7 @@ they can also add their own album when they press the add buttons tab on the nav
 
 ## Process
 
-#### Back-end
+### Back-end
 - For this project I used Node, which is server-side platform that allows Javascript users to run server-side code on the web, and with the constantly updating code we need something will track this and prevent us from stopping/restarting the server so I installed a package called nodemon
 
 - To initialise my app I imported Express which allows my app to make http requests such as GET and POST, which will allow me to get a list of albums, add a new album and update and delte an abum.
@@ -73,7 +73,10 @@ they can also add their own album when they press the add buttons tab on the nav
 MVC application (Model View Controller). To initialise React i will use yarn create react-app, which will installed a pre-configurated app.
 
 
-#### Front-end
+
+### Front-end
+
+
 
 - I remove unnecessary imports from App.js and index.js such as the logo.svg and the jsx within app.js so just left with a blank page on the screen.
 
@@ -101,7 +104,7 @@ MVC application (Model View Controller). To initialise React i will use yarn cre
 
 - Back to App.js once we have access to the userdata we can use React-context as a jsx tag and nest it directly under the BrowserRouter and passed it the value userData and setUserData, this allows all the children components to have access to the userdata
 
-
+to allow access tocertain routes within the app I made a function called checkedLoggedIn, which get the token from the localstorage and passes the token to header of the req body if a token exists and if it exists this means a user is logged in, which means they can access the authorised routes. 
 
 
 
