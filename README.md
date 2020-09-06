@@ -92,4 +92,4 @@ Future features
 
 •	Back to App.js, once we have access to the userdata we can use React-context as a jsx tag and nest it directly under the BrowserRouter, which has passed the values userData and setUserData. This allows all the children components to have access to the userdata.
 
-- To allow access to certain routes within the app I made a function called checkedLoggedIn, which gets the token from the localstorage and passes the token to the header of the req body if a token exists. If it exists this means a user is logged in, which means they can access the authorised routes.
+• To allow access to certain routes within the app I made a function called checkedLoggedIn, which gets the token from the localstorage and passes the token to the header of the req body if a token exists. If it exists this means a user is logged in, which means they can access the authorised routes.
