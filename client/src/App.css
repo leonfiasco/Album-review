@@ -9,6 +9,10 @@ a {
     text-decoration: unset;
 }
 
+.title {
+  font-size: 20px;
+}
+
 ul {
     margin-left: 1.5rem;
     list-style: none;
