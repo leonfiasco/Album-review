@@ -4,7 +4,9 @@ The premise of this app is that users can sign up and once signed in they view a
 Future features
 
 •	I'm eventually going to add an upload link so the user can upload an image of their chosen album.
+
 •	I’m also going to add a ratings system where users can rate another users album and create a system where the albums with the highest amount of rating will be shown at the top.
+
 •	I'm also going to include a Spotify api that will give users a preview of the top songs from that album.
 
 # Tech stack
@@ -19,6 +21,7 @@ Future features
 •	Express
 •	http-proxy-middleware
 •	jsonwebtokens
+
 #### Front-end
 •	React
 •	React-router-dom
