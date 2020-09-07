@@ -1,6 +1,6 @@
 {
     "env": {
-        "PASSWORD": "Kwame246..",
+        "PASSWORD": "Kwame246",
         "JWT_SECRET": "secretKey123"
     }
 }
